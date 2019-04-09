@@ -23,6 +23,10 @@
 
     <!-- Custom styles for this template -->
     <link href="css/freelancer.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+    <!-- Json to table -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 </head>
 
@@ -62,49 +66,13 @@
         <div class="contenidoPemex col-lg-12 mx-auto">
             <div class="row">
                 <div class="tabla col-lg-8">
-                    <table class="denuncias" role="table">
-                        <thead role="rowgroup">
-                            <tr role="row">
-                                <th role="columnheader" class="fol">Folio</th>
-                                <th role="columnheader" class="coo">Coordenadas</th>
-                                <th role="columnheader" class="des">Descripción</th>
-                                <th role="columnheader" class="sta">Status</th>
-                                <th role="columnheader" class="dis">Distancia al ducto</th>
-                                <th role="columnheader" class="acc">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr role="row">
-                                <td role="cell">15</td>
-                                <td role="cell">(15.5198976,-98.1301328)</td>
-                                <td role="cell">Fuga en tuberia</td>
-                                <td role="cell">En proceso</td>
-                                <td role="cell"><div class="verde"></div></td>
-                                <td role="cell"><div class="accion"><div class="asignar"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalSedena"></button></div><div class="eliminar"><button type="submit"></button></div></div></td>
-                            </tr>
-                            <tr role="row">
-                                <td role="cell">17</td>
-                                <td role="cell">(21.5196986,-99.1625728)</td>
-                                <td role="cell">Robo de combustible</td>
-                                <td role="cell">En espera</td>
-                                <td role="cell"><div class="amarillo"></div></td>
-                                <td role="cell"><div class="accion"><div class="asignar"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalSedena"></button></div><div class="eliminar"><button type="submit"></button></div></div></td>
-                            </tr>
-                            <tr role="row">
-                                <td role="cell">21</td>
-                                <td role="cell">(12.5128576,-97.1354728)</td>
-                                <td role="cell">Saboteo</td>
-                                <td role="cell">Finalizado</td>
-                                <td role="cell"><div class="rojo"></div></td>
-                                <td role="cell"><div class="accion"><div class="asignar"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalSedena"></button></div><div class="eliminar"><button type="submit"></button></div></div></td>
-                            </tr>
-                        </tbody>
+                    <table class="denuncias" role="table" id="tablaDenuncias">
+
                     </table>
                 </div>
-                <div class="col-lg-4" id="mapa">
+                <div class="col-lg-4" id="mapa" class="map">
 
                 </div>
-                <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCKiIqCdZGrVxx06LSbe7uG3zXOq1Cz5k&callback=initMap"></script>
             </div>
         </div>
     </div>

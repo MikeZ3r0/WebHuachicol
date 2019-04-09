@@ -1,200 +1,69 @@
-<!DOCTYPE>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>MarkerClusterer v3 Example</title>
-
-    <style type="text/css">
-      body {
-        margin: 0;
-        padding: 10px 20px 20px;
-        font-family: Arial;
-        font-size: 16px;
-      }
-      #map-container {
-        padding: 6px;
-        border-width: 1px;
-        border-style: solid;
-        border-color: #ccc #ccc #999 #ccc;
-        -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
-        -moz-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
-        box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
-        width: 800px;
-      }
-      #map {
-        width: 800px;
+    <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
+    <style>
+      .map {
         height: 400px;
-      }
-      #actions {
-        list-style: none;
-        padding: 0;
-      }
-      #inline-actions {
-        padding-top: 10px;
-      }
-      .item {
-        margin-left: 20px;
+        width: 100%;
       }
     </style>
-
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script src="../src/data.json" type="text/javascript"></script>
-    <script type="text/javascript" src="../src/markerclusterer.js"></script>
-
-    <script type="text/javascript">
-      var styles = [[{
-        url: '../images/people35.png',
-        height: 35,
-        width: 35,
-        anchor: [16, 0],
-        textColor: '#ff00ff',
-        textSize: 10
-      }, {
-        url: '../images/people45.png',
-        height: 45,
-        width: 45,
-        anchor: [24, 0],
-        textColor: '#ff0000',
-        textSize: 11
-      }, {
-        url: '../images/people55.png',
-        height: 55,
-        width: 55,
-        anchor: [32, 0],
-        textColor: '#ffffff',
-        textSize: 12
-      }], [{
-        url: '../images/conv30.png',
-        height: 27,
-        width: 30,
-        anchor: [3, 0],
-        textColor: '#ff00ff',
-        textSize: 10
-      }, {
-        url: '../images/conv40.png',
-        height: 36,
-        width: 40,
-        anchor: [6, 0],
-        textColor: '#ff0000',
-        textSize: 11
-      }, {
-        url: '../images/conv50.png',
-        width: 50,
-        height: 45,
-        anchor: [8, 0],
-        textSize: 12
-      }], [{
-        url: '../images/heart30.png',
-        height: 26,
-        width: 30,
-        anchor: [4, 0],
-        textColor: '#ff00ff',
-        textSize: 10
-      }, {
-        url: '../images/heart40.png',
-        height: 35,
-        width: 40,
-        anchor: [8, 0],
-        textColor: '#ff0000',
-        textSize: 11
-      }, {
-        url: '../images/heart50.png',
-        width: 50,
-        height: 44,
-        anchor: [12, 0],
-        textSize: 12
-      }]];
-      var markerClusterer = null;
-      var map = null;
-      var imageUrl = 'https://chart.apis.google.com/chart?cht=mm&chs=24x32&' +
-          'chco=FFFFFF,008CFF,000000&ext=.png';
-      function refreshMap() {
-        if (markerClusterer) {
-          markerClusterer.clearMarkers();
-        }
-        var markers = [];
-        var markerImage = new google.maps.MarkerImage(imageUrl,
-          new google.maps.Size(24, 32));
-        for (var i = 0; i < 1000; ++i) {
-          var latLng = new google.maps.LatLng(data.photos[i].latitude,
-              data.photos[i].longitude)
-          var marker = new google.maps.Marker({
-           position: latLng,
-           draggable: true,
-           icon: markerImage
-          });
-          markers.push(marker);
-        }
-        var zoom = parseInt(document.getElementById('zoom').value, 10);
-        var size = parseInt(document.getElementById('size').value, 10);
-        var style = parseInt(document.getElementById('style').value, 10);
-        zoom = zoom == -1 ? null : zoom;
-        size = size == -1 ? null : size;
-        style = style == -1 ? null: style;
-        markerClusterer = new MarkerClusterer(map, markers, {
-          maxZoom: zoom,
-          gridSize: size,
-          styles: styles[style]
-        });
-      }
-      function initialize() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 2,
-          center: new google.maps.LatLng(39.91, 116.38),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
-        var refresh = document.getElementById('refresh');
-        google.maps.event.addDomListener(refresh, 'click', refreshMap);
-        var clear = document.getElementById('clear');
-        google.maps.event.addDomListener(clear, 'click', clearClusters);
-        refreshMap();
-      }
-      function clearClusters(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        markerClusterer.clearMarkers();
-      }
-    </script>
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+    <title>OpenLayers example</title>
 </head>
-<body onload="initialize();">
-<h3>An example of MarkerClusterer v3</h3>
-<div id="map-container">
-    <div id="map"></div>
-</div>
-<div id="inline-actions">
-      <span>Max zoom level:
-        <select id="zoom">
-          <option value="-1">Default</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-          <option value="13">13</option>
-          <option value="14">14</option>
-        </select>
-
-      </span>
-    <span class="item">Cluster size:
-        <select id="size">
-          <option value="-1">Default</option>
-          <option value="40">40</option>
-          <option value="50">50</option>
-          <option value="70">70</option>
-          <option value="80">80</option>
-        </select>
-      </span>
-    <span class="item">Cluster style:
-        <select id="style">
-          <option value="-1">Default</option>
-          <option value="0">People</option>
-          <option value="1">Conversation</option>
-          <option value="2">Heart</option>
-       </select>
-       <input id="refresh" type="button" value="Refresh Map" class="item"/>
-       <a href="#" id="clear">Clear</a>
-    </span>
-</div>
+<body>
+<h2>My Map</h2>
+<div id="map" class="map"></div>
+<script type="text/javascript">
+      var map = new ol.Map({
+        target: 'map',
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        view: new ol.View({
+          center: ol.proj.fromLonLat([37.41, 8.82]),
+          zoom: 4
+        })
+      });
+    </script>
 </body>
 </html>
+
+<thead role="rowgroup">
+<tr role="row">
+    <th role="columnheader" class="fol">Folio</th>
+    <th role="columnheader" class="coo">Coordenadas</th>
+    <th role="columnheader" class="des">Descripción</th>
+    <th role="columnheader" class="sta">Status</th>
+    <th role="columnheader" class="dis">Distancia al ducto</th>
+    <th role="columnheader" class="acc">Acciones</th>
+</tr>
+</thead>
+<tbody>
+<tr role="row">
+    <td role="cell">15</td>
+    <td role="cell">(15.5198976,-98.1301328)</td>
+    <td role="cell">Fuga en tuberia</td>
+    <td role="cell">En proceso</td>
+    <td role="cell"><div class="verde"></div></td>
+    <td role="cell"><div class="accion"><div class="asignar"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalSedena"></button></div><div class="eliminar"><button type="submit"></button></div></div></td>
+</tr>
+<tr role="row">
+    <td role="cell">17</td>
+    <td role="cell">(21.5196986,-99.1625728)</td>
+    <td role="cell">Robo de combustible</td>
+    <td role="cell">En espera</td>
+    <td role="cell"><div class="amarillo"></div></td>
+    <td role="cell"><div class="accion"><div class="asignar"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalSedena"></button></div><div class="eliminar"><button type="submit"></button></div></div></td>
+</tr>
+<tr role="row">
+    <td role="cell">21</td>
+    <td role="cell">(12.5128576,-97.1354728)</td>
+    <td role="cell">Saboteo</td>
+    <td role="cell">Finalizado</td>
+    <td role="cell"><div class="rojo"></div></td>
+    <td role="cell"><div class="accion"><div class="asignar"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalSedena"></button></div><div class="eliminar"><button type="submit"></button></div></div></td>
+</tr>
+</tbody>
