@@ -109,4 +109,5 @@ $RECYCLE.BIN/
 *.lnk
 
 node_modules
+prueba.html
 # End of https://www.gitignore.io/api/windows,intellij

@@ -68,60 +68,6 @@ $(function() {
     $(this).tab("show");
   });
 
-  $("#log input").jqBootstrapValidation({
-      preventSubmit: true,
-      submitError: function($form, event, errors) {
-        // additional error messages or events
-      },
-      submitSuccess: function($form, event) {
-        event.preventDefault(); // prevent default submit behaviour
-        // get values from FORM
-        var username = $("input#username").val();
-        var pass = $("input#pass").val();
-        $this = $("#logButton");
-        $this.prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages
-        $.ajax({
-          url: "././mail/contact_me.php",
-          type: "POST",
-          data: {
-            username: username,
-            password: pass,
-          },
-          cache: false,
-          success: function() {
-            // Success message
-            $('#successlog').html("<div class='alert alert-success'>");
-            $('#successlog > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-              .append("</button>");
-            $('#successlog > .alert-success')
-              .append("<strong>Ingresando. </strong>");
-            $('#successlog > .alert-success')
-              .append('</div>');
-            //clear all fields
-            $('#log').trigger("reset");
-            $(location).attr('href', 'login.html')
-          },
-          error: function() {
-            // Fail message
-            $('#successlog').html("<div class='alert alert-danger'>");
-            $('#successlog > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-              .append("</button>");
-            $('#successlog > .alert-danger').append($("<strong>").text("El usuario y contraseña no corresponden"));
-            $('#successlog > .alert-danger').append('</div>');
-            //clear all fields
-            $('#pass').trigger("reset");
-          },
-          complete: function() {
-            setTimeout(function() {
-              $this.prop("disabled", false); // Re-enable submit button when AJAX call is complete
-            }, 1000);
-          }
-        });
-      },
-      filter: function() {
-        return $(this).is(":visible");
-      },
-    });
 
     $("a[data-toggle=\"tab\"]").click(function(e) {
       e.preventDefault();

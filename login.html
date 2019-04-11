@@ -23,10 +23,12 @@
 
     <!-- Custom styles for this template -->
     <link href="css/freelancer.min.css" rel="stylesheet">
+    <!-- OpenLayers to maps -->
     <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
     <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
     <!-- Json to table -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsts/1.5.0/jsts.js"></script>
 
 </head>
 
@@ -43,7 +45,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html">Finalizar sesión</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" id="finSesion">Finalizar sesión</a>
                 </li>
             </ul>
         </div>
@@ -59,18 +61,18 @@
 </header>
 
 <!-- Portfolio Grid Section -->
-<section class="" id="">
-    <div class="container">
+<section class="" id="" col-lg-12>
+    <div class="container col-lg-12">
         <h2 class="text-center text-uppercase text-secondary mb-0">Control de denuncias</h2>
         <hr class="star-dark mb-5">
         <div class="contenidoPemex col-lg-12 mx-auto">
-            <div class="row">
+            <div class="row justify-content-between">
                 <div class="tabla col-lg-8">
                     <table class="denuncias" role="table" id="tablaDenuncias">
 
                     </table>
                 </div>
-                <div class="col-lg-4" id="mapa" class="map">
+                <div class="map col-lg-4" id="mapa">
 
                 </div>
             </div>

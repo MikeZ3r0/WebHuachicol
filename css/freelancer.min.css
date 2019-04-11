@@ -96,27 +96,31 @@
 
 
 .fol{
-    width:10%
+    width:10%;
 }
 
 .coo{
-    width:20%
+    width:15%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .des{
-    width:30%
+    width:25%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .sta{
-    width:10%
+    width:10%;
 }
 
 .dis{
-    width:10%
+    width:10%;
 }
 
 .acc{
-    width:20%
+    width:30%;
 }
 
 #mapa{
